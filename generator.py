@@ -1,4 +1,4 @@
-from itertools import combinations
+import itertools
 
 iters = int(input('How many binary digits shall there be?\n'))
 bin_nums = []
@@ -7,10 +7,11 @@ for i in range(iters):
     bin_nums.append("0")
     bin_nums.append("1")
 
-statements = []
+print('starting comboing')
 
-for i in range(iters):
-    for combo in combinations(bin_nums, i+1): statements.append(combo)
+statements = list(sorted(itertools.product(['0', '1'], repeat=iters)))
+
+print('done combing')
 
 f = open('my_first_converter.py', 'w+')
 
@@ -19,9 +20,8 @@ to_compile = ""
 to_compile += "print('Welcome to my first converter!!!!')\n"
 to_compile += "num = input('Whats your number???')\n\n"
 
-binaries = sorted(set([('0' * (iters - len(i))) + ''.join(i) for i in [''.join(i) for i in statements]]))
+binaries = [('0' * (iters - len(i))) + ''.join(i) for i in [''.join(i) for i in statements]]
 
-print(binaries)
 for i in binaries:
     to_compile += f"if '{i}' == num:\n"
 
