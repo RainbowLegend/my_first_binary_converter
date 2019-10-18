@@ -11,9 +11,9 @@ print('starting comboing')
 
 statements = list(sorted(itertools.product(['0', '1'], repeat=iters)))
 
-print('done combing')
+print('done comboing')
 
-f = open('my_first_converter.py', 'w+')
+f = open(f'my_first_converter_{iters}bit.py', 'w+')
 
 to_compile = ""
 
